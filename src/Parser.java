@@ -41,7 +41,8 @@ public class Parser {
     }
 
     public static List<Rating> parseRating(String text) {
-        Rating ratingObjectMen, ratingObjectWomen;
+      Rating ratingObjectMen, ratingObjectWoman;
+      Rating ratingObject;
         Pattern pattern = Pattern.compile(
                 "<tr align=\"right\"><td>(?<rating>\\d{1,4})</td><td>(?<nameMan>\\w+)</td><td>(?<nameWoman>\\w+)</td>");
         Matcher matcher = pattern.matcher(text);
@@ -50,37 +51,51 @@ public class Parser {
             int rating = Integer.parseInt(d);
             String nameMan = matcher.group("nameMan");
             String nameWoman = matcher.group("nameWoman");
-            ratingObjectMen = new Rating(rating, nameMan);
-            ratingObjectWomen = new Rating(rating, nameWoman);
-            ratingListMen.add(ratingObjectMen);
-            ratingListWomen.add(ratingObjectWomen);
-            ratingList.addAll(ratingObjectMen, ratingObjectWomen);
+          ratingObject = new Rating(rating, nameMan, nameWoman);
+          //ratingObjectWoman = new Rating(rating, nameWoman);
+          //ratingObjectMen = new Rating(rating, nameMan);
+          //ratingListMen.add(ratingObjectMen);
+          //ratingListWomen.add(ratingObjectWoman);
+          //ratingList.addAll(ratingObjectMen, ratingObjectWoman);
+          //ratingList.add(ratingListMen);
+          //ratingList.add(ratingListWomen);
+          ratingList.add(ratingObject);
         }
         // Sort the ArrayList
-        sortArrayListMen(ratingListMen);
-        sortArrayListWomen(ratingListWomen);
+      //sortArrayListMen(ratingListMen);
+      //sortArrayListWomen(ratingListWomen);
+      sortArrayList(ratingList);
         // Create the txt files of the years
         createTXTFiles(ratingList);
         return ratingList;
     }
 
-    public static List<Rating> sortArrayListMen(List<Rating> ratings) {
-        Collections.sort(ratings, new Comparator<Rating>() {
-            public int compare(Rating obj1, Rating obj2) {
-                return (obj1.getNameMan().compareTo(obj2.getNameMan()));
-            }
-        });
-        return ratings;
-    }
+//    public static List<Rating> sortArrayListMen(List<Rating> ratings) {
+//        Collections.sort(ratings, new Comparator<Rating>() {
+//            public int compare(Rating obj1, Rating obj2) {
+//                return (obj1.getNameMan().compareTo(obj2.getNameMan()));
+//            }
+//        });
+//        return ratings;
+//    }
+//
+//    private static List<Rating> sortArrayListWomen(List<Rating> ratings) {
+//        Collections.sort(ratings, new Comparator<Rating>() {
+//            public int compare(Rating obj1, Rating obj2) {
+//                return (obj1.getNameWoman().compareTo(obj2.getNameWoman()));
+//            }
+//        });
+//        return ratings;
+//    }
 
-    private static List<Rating> sortArrayListWomen(List<Rating> ratings) {
-        Collections.sort(ratings, new Comparator<Rating>() {
-            public int compare(Rating obj1, Rating obj2) {
-                return (obj1.getNameWoman().compareTo(obj2.getNameWoman()));
-            }
-        });
-        return ratings;
-    }
+  private static List<Rating> sortArrayList(List<Rating> ratings) {
+    Collections.sort(ratings, new Comparator<Rating>() {
+      public int compare(Rating obj1, Rating obj2) {
+        return (obj1.getNameWoman().compareTo(obj2.getNameWoman()));
+      }
+    });
+    return ratings;
+  }
 
     private static boolean createTXTFiles(List<Rating> ratings) {
         FileWriter flwriter = null;

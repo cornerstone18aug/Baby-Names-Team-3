@@ -12,7 +12,6 @@ public class App {
       List list = Parser.parseRating(text);
       list.forEach(System.out::println);
       year = year + 2;
-      new Parser();
     } while (year <= 2008);
   }
 }
