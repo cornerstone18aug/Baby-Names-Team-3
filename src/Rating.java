@@ -1,3 +1,5 @@
+package src;
+
 public class Rating {
 
     private int rating;
@@ -25,9 +27,9 @@ public class Rating {
     @Override
     public String toString() {
         return "Rating{" +
-                "rating=" + rating +
-                ", nameMan='" + nameMan + '\'' +
-                ", nameWoman='" + nameWoman + '\'' +
-                '}';
+            "rating=" + rating +
+            ", nameMan='" + nameMan + '\'' +
+            ", nameWoman='" + nameWoman + '\'' +
+            '}';
     }
 }
