@@ -12,6 +12,16 @@ public class Rating {
         this.nameWoman = nameWoman;
     }
 
+    public Rating(int rating, String nameWoman) {
+        this.rating = rating;
+        this.nameWoman = nameWoman;
+    }
+
+    public Rating(int rating, String nameMan) {
+        this.rating = rating;
+        this.nameMan = nameMan;
+    }
+
     public int getRating() {
         return rating;
     }
